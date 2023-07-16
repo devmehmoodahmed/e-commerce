@@ -1,5 +1,11 @@
 class User < ApplicationRecord
-  validates :email, presence: true, uniqueness: true
-  validates :password, presence: true, length: { minimum: 8 }
-end
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  def admin?
+    type == "admin"
+  end
 
+  def vendor?
+    type == "vendor"
+  end
+end
