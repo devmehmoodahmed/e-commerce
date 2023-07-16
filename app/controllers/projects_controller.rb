@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
-  # before_action :authenticate_user!
-  before_action :check_admin_or_vendor, except: [:index]
+  # before_action :check_admin_or_vendor, except: [:index]
 
   def index
     @projects = Project.all
@@ -10,10 +9,14 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  def show
+    @project = Project.find(params[:id])
+  end
+
   def create
     @project = Project.new(project_params)
+    @project.vendor_id = current_user.id
     if @project.save
-      # Project creation successful
       redirect_to projects_path, notice: "Project created successfully."
     else
       # Project creation failed, show errors
@@ -49,8 +52,9 @@ class ProjectsController < ApplicationController
   end
 
   def check_admin_or_vendor
-    return if current_user.admin? || current_user.vendor?
-    redirect_to root_path, alert: "You are not authorized to perform this action."
+    if !(current_user.admin? || current_user.vendor?)
+      redirect_to root_path, alert: "You are not authorized to perform this action."
+    end
   end
 end
 # 

@@ -2,10 +2,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   def admin?
-    type == "admin"
+    type == "Admin"
   end
 
   def vendor?
-    type == "vendor"
+    type == "Vendor"
   end
 end

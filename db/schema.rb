@@ -50,5 +50,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_16_112344) do
 
   add_foreign_key "project_categories", "categories"
   add_foreign_key "project_categories", "projects"
-  add_foreign_key "projects", "vendors"
 end

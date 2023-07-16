@@ -1,0 +1,17 @@
+<h2>Edit Project</h2>
+
+<%= form_with(model: @project, url: project_path(@project), method: :patch) do |form| %>
+  <div class="field">
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Update Project" %>
+  </div>
+<% end %>

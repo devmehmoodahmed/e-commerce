@@ -3,7 +3,7 @@ class CreateProjects < ActiveRecord::Migration[7.0]
     create_table :projects do |t|
       t.string :title
       t.text :description
-      t.references :vendor, null: false, foreign_key: true
+      t.references :vendor, null: false
 
       t.timestamps
     end
